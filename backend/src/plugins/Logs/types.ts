@@ -1,4 +1,8 @@
-import { BasePluginType, CooldownManager, guildPluginEventListener } from "vety";
+import {
+  BasePluginType,
+  CooldownManager,
+  guildPluginEventListener,
+} from "vety";
 import { z } from "zod";
 import { RegExpRunner } from "../../RegExpRunner.js";
 import { GuildArchives } from "../../data/GuildArchives.js";
@@ -6,7 +10,13 @@ import { GuildCases } from "../../data/GuildCases.js";
 import { GuildLogs } from "../../data/GuildLogs.js";
 import { GuildSavedMessages } from "../../data/GuildSavedMessages.js";
 import { LogType } from "../../data/LogType.js";
-import { keys, zBoundedCharacters, zMessageContent, zRegex, zSnowflake } from "../../utils.js";
+import {
+  keys,
+  zBoundedCharacters,
+  zMessageContent,
+  zRegex,
+  zSnowflake,
+} from "../../utils.js";
 import { MessageBuffer } from "../../utils/MessageBuffer.js";
 import {
   TemplateSafeCase,
@@ -22,8 +32,9 @@ import {
   TemplateSafeUser,
 } from "../../utils/templateSafeObjects.js";
 import { TemplateSafeValueContainer } from "../../templateFormatter.js";
-import DefaultLogMessages from "../../data/DefaultLogMessages.json" with { type: "json" };
-import { TemplateSafeValueContainer } from "templateFormatter.js";
+import DefaultLogMessages from "../../data/DefaultLogMessages.json" with {
+  type: "json",
+};
 
 const DEFAULT_BATCH_TIME = 1000;
 const MIN_BATCH_TIME = 250;
@@ -45,9 +56,16 @@ const zLogChannel = z.strictObject({
   include: z.array(zBoundedCharacters(1, 255)).default([]),
   exclude: z.array(zBoundedCharacters(1, 255)).default([]),
   batched: z.boolean().default(true),
-  batch_time: z.number().min(MIN_BATCH_TIME).max(MAX_BATCH_TIME).default(DEFAULT_BATCH_TIME),
+  batch_time: z
+    .number()
+    .min(MIN_BATCH_TIME)
+    .max(MAX_BATCH_TIME)
+    .default(DEFAULT_BATCH_TIME),
   excluded_users: z.array(zSnowflake).nullable().default(null),
-  excluded_message_regexes: z.array(zRegex(z.string())).nullable().default(null),
+  excluded_message_regexes: z
+    .array(zRegex(z.string()))
+    .nullable()
+    .default(null),
   excluded_channels: z.array(zSnowflake).nullable().default(null),
   excluded_categories: z.array(zSnowflake).nullable().default(null),
   excluded_threads: z.array(zSnowflake).nullable().default(null),
@@ -122,7 +140,9 @@ export const LogTypeData = z.object({
   }),
 
   [LogType.MEMBER_MUTE_EXPIRED]: z.object({
-    member: z.instanceof(TemplateSafeMember).or(z.instanceof(TemplateSafeUnknownMember)),
+    member: z
+      .instanceof(TemplateSafeMember)
+      .or(z.instanceof(TemplateSafeUnknownMember)),
   }),
 
   [LogType.MEMBER_KICK]: z.object({
@@ -392,7 +412,9 @@ export const LogTypeData = z.object({
   }),
 
   [LogType.MEMBER_TIMED_UNBAN]: z.object({
-    mod: z.instanceof(TemplateSafeUser).or(z.instanceof(TemplateSafeUnknownUser)),
+    mod: z
+      .instanceof(TemplateSafeUser)
+      .or(z.instanceof(TemplateSafeUnknownUser)),
     userId: z.string(),
     banTime: z.string(),
     caseNumber: z.number(),
@@ -412,7 +434,10 @@ export const LogTypeData = z.object({
   }),
 
   [LogType.MEMBER_ROLE_CHANGES]: z.object({
-    mod: z.instanceof(TemplateSafeUser).or(z.instanceof(TemplateSafeUnknownUser)).or(z.null()),
+    mod: z
+      .instanceof(TemplateSafeUser)
+      .or(z.instanceof(TemplateSafeUnknownUser))
+      .or(z.null()),
     member: z.instanceof(TemplateSafeMember),
     addedRoles: z.string(),
     removedRoles: z.string(),
@@ -520,7 +545,9 @@ export const LogTypeData = z.object({
 
   [LogType.DM_FAILED]: z.object({
     source: z.string(),
-    user: z.instanceof(TemplateSafeUser).or(z.instanceof(TemplateSafeUnknownUser)),
+    user: z
+      .instanceof(TemplateSafeUser)
+      .or(z.instanceof(TemplateSafeUnknownUser)),
   }),
 });
 
