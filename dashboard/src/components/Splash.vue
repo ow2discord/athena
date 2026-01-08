@@ -5,12 +5,12 @@
     </div>
     <div class="wrapper">
       <div class="logo-column">
-        <img class="logo" src="/img/logo.png" alt="Zeppelin Logo" />
+        <img class="logo" src="/img/icon.svg" alt="Athena Logo" />
       </div>
       <div class="info-column">
-        <h1>Zeppelin</h1>
+        <h1>Athena</h1>
         <div class="description">
-          Zeppelin is a private moderation bot for Discord, designed with large servers and reliability in mind.
+          Athena is a private moderation bot for Discord, forked from <a href="https://zeppelin.gg">Zeppelin</a>.
         </div>
         <div class="actions">
           <a class="btn" href="/dashboard">Dashboard</a>
@@ -18,10 +18,10 @@
         </div>
         <ul class="links">
           <li>
-            <a href="https://discord.gg/zeppelin">Official Discord Server</a>
+            <a href="https://discord.gg/overwatch">OW Discord Server</a>
           </li>
           <li>
-            <a href="https://github.com/Dragory/ZeppelinBot">GitHub</a>
+            <a href="https://github.com/ow2discord/athena">GitHub</a>
           </li>
           <li>
             <a href="/privacy-policy">Privacy Policy</a>
